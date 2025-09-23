@@ -9,11 +9,19 @@ def load_model():
 
 model = load_model()
 
-col1, col2 = st.columns([1, 5])
+st.set_page_config(page_title="IVE Korea 광고 효율 예측기", layout="wide")
+
+col1, col2, col3 = st.columns([1,4,1])
 with col1:
-    st.image("아이브로고.png", width=80)  
+    st.write("")
 with col2:
-    st.markdown("<h1 style='margin-top: 10px;'>광고 효율 예측기</h1>", unsafe_allow_html=True)
+    logo_col, title_col = st.columns([1,5])
+    with logo_col:
+        st.image("8634f61c-6c8f-457b-9063-e9ac14b20456.png", width=60)
+    with title_col:
+        st.markdown("<h1 style='margin-top: 10px;'>광고 효율 예측기</h1>", unsafe_allow_html=True)
+with col3:
+    st.write("") 
 
 mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
 adv_cost = st.number_input("광고단가 (adv_cost)", min_value=0, value=1000)
@@ -38,4 +46,5 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
