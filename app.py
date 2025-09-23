@@ -2,9 +2,6 @@ import pandas as pd
 import joblib
 import streamlit as st
 
-# ✅ 페이지 설정은 최상단에서 먼저
-st.set_page_config(page_title="IVE Korea 광고 효율 예측기", layout="wide")
-
 # ✅ 캐싱 (모델은 실행할 때마다 다시 안 불러옴)
 @st.cache_resource
 def load_model():
@@ -12,26 +9,17 @@ def load_model():
 
 model = load_model()
 
-# ===== 로고 + 제목 중앙 정렬 =====
-col1, col2, col3 = st.columns([1,4,1])
+col1, col2 = st.columns([1, 5])
 with col1:
-    st.write("")
+    st.image("아이브로고.png", width=80)  
 with col2:
-    logo_col, title_col = st.columns([1,5])
-    with logo_col:
-        st.image("8634f61c-6c8f-457b-9063-e9ac14b20456.png", width=60)
-    with title_col:
-        st.markdown("<h1 style='margin-top: 10px;'>광고 효율 예측기</h1>", unsafe_allow_html=True)
-with col3:
-    st.write("")
+    st.markdown("<h1 style='margin-top: 10px;'>광고 효율 예측기</h1>", unsafe_allow_html=True)
 
-# ===== 입력 폼 =====
 mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
 adv_cost = st.number_input("광고단가 (adv_cost)", min_value=0, value=1000)
 ads_type = st.selectbox("타입 (ads_type)", list(range(13)), index=2)
 ads_category = st.selectbox("카테고리 (ads_category)", list(range(13)), index=2)
 
-# ===== 예측 실행 =====
 if st.button("예측하기"):
     try:
         mda_list = [int(x.strip()) for x in mda_input.split(",") if x.strip().isdigit()]
