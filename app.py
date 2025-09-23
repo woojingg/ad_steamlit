@@ -48,14 +48,17 @@ if submitted:
             "매체번호": mda_list,
             "예측": ["✅ 효율" if y == 1 else "❌ 비효율" for y in y_pred],
             "효율 확률": [f"{p:.2%}" for p in y_prob]
-        })
+        }).sort_values("효율 확률", ascending=False).reset_index(drop=True)
+        result_df["순위"] = range(1, len(result_df) + 1)
+        result_df["효율 확률"] = result_df["효율 확률"].map(lambda x: f"{x:.2%}")
 
         st.subheader("📊 예측 결과")
-        st.dataframe(result_df, use_container_width=True)
+        st.dataframe(result_df[["순위", "매체번호", "예측", "효율 확률"]], use_container_width=True)
       
         
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
