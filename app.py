@@ -14,16 +14,13 @@ model = load_model()
 # ===== 헤더 (로고 + 제목 일자 정렬) =====
 st.markdown(
     """
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <img src="https://raw.githubusercontent.com/woojin/ive-ad-predict/main/아이브로고.png" width="100" style="margin-right: 20px;">
+    <div style="display: flex; align-items: center;">
+        <img src="아이브로고.png" width="100" style="margin-right: 20px;">
         <h1 style="margin: 0;">아이브 광고 효율 예측기</h1>
     </div>
     """,
     unsafe_allow_html=True
 )
-
-
-
 
 
 mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
@@ -49,6 +46,7 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
