@@ -2,7 +2,6 @@ import pandas as pd
 import joblib
 import streamlit as st
 
-st.set_page_config(page_title="IVE Korea 광고 효율 예측기", layout="wide")
 
 # ✅ 캐싱 (모델은 실행할 때마다 다시 안 불러옴)
 @st.cache_resource
@@ -43,6 +42,7 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
