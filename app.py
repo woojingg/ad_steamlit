@@ -24,10 +24,10 @@ st.markdown(
 )
 
 
-mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
+mda_input = st.text_input("매체번호(mda_idx) 입력(다수 입력가능)", "342,396")
 adv_cost = st.number_input("광고단가 (adv_cost)", min_value=0, value=1000)
-ads_type = st.selectbox("타입 (ads_type)", list(range(13)), index=2)
-ads_category = st.selectbox("카테고리 (ads_category)", list(range(13)), index=2)
+ads_type = st.selectbox("광고 타입 (ads_type)", list(range(13)), index=2)
+ads_category = st.selectbox("광고 카테고리 (ads_category)", list(range(13)), index=2)
 
 if st.button("예측하기"):
     try:
@@ -42,11 +42,12 @@ if st.button("예측하기"):
         result_df = pd.DataFrame({
             "매체번호": mda_list,
             "효율(1) / 비효율(0)": y_pred,
-            "효율 확률": [f"{p:.2%}" for p in y_prob]
+            "광고 효율 확률": [f"{p:.2%}" for p in y_prob]
         })
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
