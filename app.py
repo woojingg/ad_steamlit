@@ -34,7 +34,7 @@ with st.form("input_form"):
     submitted = st.form_submit_button("예측하기")
 
 # ===== 예측 결과 =====
-if st.button("예측하기"):
+if submitted:
     try:
         mda_list = [int(x.strip()) for x in mda_input.split(",") if x.strip().isdigit()]
         new_data = pd.DataFrame(
@@ -56,6 +56,7 @@ if st.button("예측하기"):
         
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
