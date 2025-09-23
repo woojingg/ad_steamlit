@@ -13,7 +13,7 @@ model = load_model()
 # ===== 헤더 (로고 + 제목 일자 정렬) =====
 col1, col2 = st.columns([1,8])
 with col1:
-    st.image("images/ive_logo.png", width=100)   # GitHub에 있는 경로
+    st.image("아이브로고.png", width=100)   # GitHub에 있는 경로
 with col2:
     st.markdown("<h1 style='margin-top: 25px;'>아이브 광고 효율 예측기</h1>", unsafe_allow_html=True)
 
@@ -42,6 +42,7 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
