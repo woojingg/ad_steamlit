@@ -52,11 +52,11 @@ if st.button("예측하기"):
 
         st.subheader("📊 예측 결과")
         st.dataframe(result_df, use_container_width=True)
-         # 효율 확률 차트
-        st.bar_chart(pd.DataFrame({"매체번호": mda_list, "효율 확률": y_prob}).set_index("매체번호"))
+      
         
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
