@@ -9,11 +9,11 @@ def load_model():
 
 model = load_model()
 
-col1, col2 = st.columns([1, 5])
+col1, col2 = st.columns([1, 8])
 with col1:
-    st.image("아이브로고.png", width=80)  
+    st.image("아이브로고.png", width=120)  
 with col2:
-    st.markdown("<h1 style='margin-top: 10px;'>광고 효율 예측기</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='margin-top: 35px;'>아이브 광고 효율 예측기</h1>", unsafe_allow_html=True)
 
 mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
 adv_cost = st.number_input("광고단가 (adv_cost)", min_value=0, value=1000)
@@ -38,3 +38,4 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
