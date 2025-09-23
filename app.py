@@ -15,12 +15,13 @@ model = load_model()
 st.markdown(
     """
     <div style="display: flex; align-items: center; justify-content: center;">
-        <img src="images/아이브로고.png" width="100" style="margin-right: 20px;">
+        <img src="https://raw.githubusercontent.com/USERNAME/REPO/BRANCH/아이브로고.png" width="100" style="margin-right: 20px;">
         <h1 style="margin: 0;">아이브 광고 효율 예측기</h1>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
@@ -47,6 +48,7 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
