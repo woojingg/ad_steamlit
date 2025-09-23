@@ -45,18 +45,19 @@ if submitted:
         y_prob = model.predict_proba(new_data)[:, 1]
 
         result_df = pd.DataFrame({
-            "매체번호": mda_list,
+            "매체번호": [str(m) for m in mda_list],  # 매체번호를 문자열로 변환
             "예측": ["✅ 효율" if y == 1 else "❌ 비효율" for y in y_pred],
-            "효율 확률": [f"{p:.2%}" for p in y_prob]
+            "효율 확률(raw)": y_prob  # 정렬용 float
         })
+
         # 효율 확률 기준 내림차순 정렬
-        result_df = result_df.sort_values("효율 확률", ascending=False).reset_index(drop=True)
+        result_df = result_df.sort_values("효율 확률(raw)", ascending=False).reset_index(drop=True)
 
         # 순위 추가
         result_df["순위"] = range(1, len(result_df) + 1)
 
-        # 효율 확률을 퍼센트 문자열로 변환
-        result_df["효율 확률"] = result_df["효율 확률"].map(lambda x: f"{x:.2%}")
+        # 표시용 퍼센트 컬럼 추가
+        result_df["효율 확률"] = result_df["효율 확률(raw)"].map(lambda x: f"{x:.2%}")
 
         # 원하는 컬럼 순서로 출력
         st.subheader("📊 효율 순위 결과")
@@ -65,6 +66,7 @@ if submitted:
         
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
 
 
