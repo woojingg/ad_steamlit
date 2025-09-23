@@ -2,6 +2,8 @@ import pandas as pd
 import joblib
 import streamlit as st
 
+st.set_page_config(page_title="IVE Korea 광고 효율 예측기", layout="wide")
+
 # ✅ 캐싱 (모델은 실행할 때마다 다시 안 불러옴)
 @st.cache_resource
 def load_model():
@@ -9,11 +11,17 @@ def load_model():
 
 model = load_model()
 
-col1, col2 = st.columns([1, 8])
-with col1:
-    st.image("아이브로고.png", width=120)  
-with col2:
-    st.markdown("<h1 style='margin-top: 35px;'>아이브 광고 효율 예측기</h1>", unsafe_allow_html=True)
+# ===== 헤더 (로고 + 제목 일자 정렬) =====
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; justify-content: center;">
+        <img src="b2f3ecb0-8abc-417d-95cc-52e05cc7e884.png" width="100" style="margin-right: 20px;">
+        <h1 style="margin: 0;">아이브 광고 효율 예측기</h1>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 mda_input = st.text_input("매체번호(mda_idx) 입력", "342,396")
 adv_cost = st.number_input("광고단가 (adv_cost)", min_value=0, value=1000)
@@ -38,4 +46,5 @@ if st.button("예측하기"):
         st.dataframe(result_df, use_container_width=True)
     except Exception as e:
         st.error(f"입력 오류: {e}")
+
 
